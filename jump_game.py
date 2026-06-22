@@ -1,7 +1,7 @@
 class Solution:
     def helper(c, total):
         for j in range(0, c, 1):
-            a = nums[c]
+            a = nums[j]
             if (a + nums[a]) == total:
                 return True
             else:
@@ -10,9 +10,8 @@ class Solution:
     def canJump(self, nums: List[int]) -> bool:
         n = len(nums)
         out = False
-        for i in range(nums):
-            # Base Case
-            if nums[i] == n:
-                return True
-            out = helper(i, n)
+        cur = 0
+        if nums[cur] == n:
+            return True
+        out = helper(nums[cur], n)
         return out
