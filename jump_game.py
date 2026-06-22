@@ -1,17 +1,15 @@
 class Solution:
-    def helper(c, total):
-        for j in range(0, c, 1):
+    def helper(self, nums, c, total):
+        if c >= total:
+            return True
+        for j in range(0, nums[c], 1):
             a = nums[j]
-            if (a + nums[a]) == total:
+            if self.helper(nums, c + j, total):
                 return True
-            else:
-                if (a + nums[a] + helper(j+a, total)) == total:
-                    return True
+        return False
     def canJump(self, nums: List[int]) -> bool:
         n = len(nums)
         out = False
         cur = 0
-        if nums[cur] == n:
-            return True
-        out = helper(nums[cur], n-1)
+        out = self.helper(nums, cur, n-1)
         return out
