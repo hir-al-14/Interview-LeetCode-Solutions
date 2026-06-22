@@ -5,7 +5,7 @@ class Solution:
             if (a + nums[a]) == total:
                 return True
             else:
-                if (a + nums[a] + helper(nums[a])) == total:
+                if (a + nums[a] + helper(j+a, total)) == total:
                     return True
     def canJump(self, nums: List[int]) -> bool:
         n = len(nums)
@@ -13,5 +13,5 @@ class Solution:
         cur = 0
         if nums[cur] == n:
             return True
-        out = helper(nums[cur], n)
+        out = helper(nums[cur], n-1)
         return out
