@@ -7,6 +7,6 @@ class Solution:
             if i > max_dist:
                 return False
             max_dist = max(max_dist, i + jump_value)
-        if max_dist == n:
+        if max_dist >= n - 1:
             return True
         else: return False
