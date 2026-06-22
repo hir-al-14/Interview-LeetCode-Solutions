@@ -2,9 +2,11 @@ class Solution:
     def canJump(self, nums: List[int]) -> bool:
         max_dist = 0
         n = len(nums)
-        for i in range(nums):
+        for i in range(n):
             jump_value = nums[i]
             if i > max_dist:
                 return False
             max_dist = max(max_dist, i + jump_value)
-        return max_dist
+        if max_dist == n:
+            return True
+        else: return False
