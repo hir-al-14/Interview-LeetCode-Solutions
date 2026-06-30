@@ -1,18 +1,23 @@
 class Solution:
     def setZeroes(self, matrix: List[List[int]]) -> None:
-       r=len(matrix) 
-       c=len(matrix[0])
+       """
+        Do not return anything, modify matrix in-place instead.
+        """
+        a = len(matrix)
+        b = len(matrix[0])
 
-       row_track=[0 for _ in range (r)]
-       col_track=[0 for _ in range (c)]
+        rows_with_0 = [0] * a
+        cols_with_0 = [0] * b
 
-       for i in range(0,r):
-        for j in range(0,c):
-            if matrix[i][j]==0:
-                row_track[i]=-1
-                col_track[j]=-1
+        # find row, col containing a zero
+        for i in range(a):
+            for j in range(b):
+                if matrix[i][j] == 0:
+                    rows_with_0[i] = 1
+                    cols_with_0[j] = 1
 
-       for i in range(0,r):
-        for j in range(0,c):
-            if row_track[i]==-1 or col_track[j]==-1:
-                matrix[i][j]=0        
+        for i in range(a):
+            for j in range(b):
+                if rows_with_0[i] or cols_with_0[j]:
+                    matrix[i][j] = 0
+             
