@@ -1,14 +1,20 @@
 class Solution:
     def numDecodings(self, s: str) -> int:
-        all_encoding=[]
-        def decode(c):
-            char = chr(ord('a')+int(c)-1)
+        count = 0
+        is_valid = True
+
+        # Base case- as 0 is not a valid decosde and 01 or any other num is also not valid
+        if s[0] == '0':
+            return 0
         for i in range(len(s)):
-            for j in [1,2]:
-                if (s[i] == 0):
-                    all_encoding[i] = decode(s[i+j])
-                elif (s[i+j] == 0):
-                    all_encoding[i] = decode(s[i])
-                else:
-                    all_encoding[i] = decode(s[i:(i+j)])
-        return len(all_encoding)
+            for j in [0,1]:
+                if i + j < len(s):
+                    if (s[i] == '0'):
+                        is_valid = True
+                    elif (s[i+j] == '0'):
+                        is_valid = True
+                    else:
+                        is_valid = True
+            if is_valid:
+                count += 1
+        return count
