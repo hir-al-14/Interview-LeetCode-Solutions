@@ -16,10 +16,6 @@ class Solution:
 
             # j is the length - either 1 or 2 length can be decoded
             for j in [1,2]:
-                one = s[i:i+j]
-                if i + j > len(s):
-                    continue
-
                 part = s[i-j:i]
 
                 if (j == 1) and (part!='0'):
