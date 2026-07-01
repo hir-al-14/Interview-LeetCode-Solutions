@@ -5,13 +5,14 @@ class Solution:
         if s[0] == '0':
             return 0
         
-        # decode_ways- number of ways to decode the first i characters of the string
-        decode_ways = [0]*(len(s) + 1)
-        decode_ways[0] = 1
+        # everytime we need to keep track of the previous and previous-1 character's ways
+        # second_last = ways to decode up to 2 positions before current
+        # last = ways to decode up to 1 position before current
+        second_last = 1
+        last = 1
 
         for i in range(2, len(s)+1):
-            if decode_ways[i] == 0:
-                continue
+            current = 0
 
             # j is the length - either 1 or 2 length can be decoded
             for j in [1,2]:
@@ -19,11 +20,14 @@ class Solution:
                 if i + j > len(s):
                     continue
 
-                part = s[i:i+j]
+                part = s[i-j:i]
 
                 if (j == 1) and (part!='0'):
-                    decode_ways[i+j] += decode_ways[i]
+                    current += last
                 elif (j == 2) and (10 <= int(part) <= 26):
-                    decode_ways[i+j] += decode_ways[i]
+                    current += second_last
+                
+            second_last = last
+            last = current
 
-        return decode_ways[len(s)] # Total ways to decode the entire string
+        return last # Total ways to decode the entire string
